@@ -65,22 +65,28 @@ class ServiceViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun retrieveDataSuccess(result: WeatherResult) {
-        var viewModel = WeatherViewModel()
+        val viewModel = WeatherViewModel()
         viewModel.bind(getApplication(), result)
         selectedItem.value = viewModel
     }
 
     private fun retrieveDataSuccess(result: WeatherListResult) {
-        adapter.update(result.weathers)
+        adapter.update(result.weathers, object : ItemClickListener {
+            override fun onClick(item: WeatherResult) {
+                retrieveDataSuccess(item)
+            }
+
+        })
     }
 
     private fun retrieveDataError(exception: Throwable) {
         exception.printStackTrace()
         errorMessage.value = R.string.error
+        selectedItem.value = null
     }
 
     private fun getLocationMap(latitude: Double, longitude: Double): Map<String, String> {
-        var map: MutableMap<String, String> = hashMapOf()
+        val map: MutableMap<String, String> = hashMapOf()
         map[LAT_PARAM] = latitude.toString()
         map[LON_PARAM] = longitude.toString()
 

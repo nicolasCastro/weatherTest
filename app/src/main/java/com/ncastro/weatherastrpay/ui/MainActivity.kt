@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
+import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -95,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                             DialogInterface.OnClickListener { _, _ ->
                                 val intent = Intent()
                                 intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                                val uri = Uri.fromParts("package", BuildConfig.APPLICATION_ID, null)
+                                val uri = Uri.fromParts(PermissionViewModel.PACKAGE, BuildConfig.APPLICATION_ID, null)
                                 intent.data = uri
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(intent)
@@ -120,6 +121,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadItem() {
         val binding: CardItemBinding = DataBindingUtil.bind(card_view)!!
         serviceViewModel.selectedItem.observe(this, Observer {
+            binding.root.visibility = if (it == null) View.GONE else View.VISIBLE
             binding.viewModel = it
         })
     }

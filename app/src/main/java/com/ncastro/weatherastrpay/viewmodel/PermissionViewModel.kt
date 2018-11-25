@@ -13,10 +13,11 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import com.ncastro.weatherastrpay.R
 
-class PermissionViewModel(application: Application): AndroidViewModel(application) {
+class PermissionViewModel(application: Application) : AndroidViewModel(application) {
 
     companion object {
         const val LOCATION_PERMISSION = 34
+        const val PACKAGE = "package"
     }
 
     fun checkPermissions(): Boolean {
@@ -49,7 +50,7 @@ class PermissionViewModel(application: Application): AndroidViewModel(applicatio
         val builder = AlertDialog.Builder(context())
         builder.setMessage(context().getString(message))
                 .setTitle(context().getString(title))
-        builder.setPositiveButton("OK", listener)
+        builder.setPositiveButton(context().getString(R.string.ok), listener)
         val dialog = builder.create()
         dialog.show()
     }

@@ -12,4 +12,5 @@
     <string name="wind_format">wind %s m/s</string>
     <string name="clouds_format">clouds %s %%</string>
     <string name="pressure_format">%s hpa</string>
+    <string name="ok">Ok</string>
 </resources>

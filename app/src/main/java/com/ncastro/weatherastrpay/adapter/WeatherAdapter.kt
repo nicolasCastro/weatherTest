@@ -7,12 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ncastro.weatherastrpay.R
 import com.ncastro.weatherastrpay.databinding.WeatherItemBinding
 import com.ncastro.weatherastrpay.model.WeatherResult
+import com.ncastro.weatherastrpay.viewmodel.ItemClickListener
 
 class WeatherAdapter : RecyclerView.Adapter<WeatherViewHolder>() {
 
     private lateinit var items: List<WeatherResult>
+    private lateinit var listener: ItemClickListener
 
-    fun update(items: List<WeatherResult>) {
+    fun update(items: List<WeatherResult>, listener: ItemClickListener) {
+        this.listener = listener
         this.items = items
         notifyDataSetChanged()
     }
@@ -23,7 +26,7 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position], listener)
     }
 
     override fun getItemCount(): Int {
