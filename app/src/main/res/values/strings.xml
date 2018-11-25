@@ -3,6 +3,7 @@
 
     <string name="permission_request_title">Permission required</string>
     <string name="permission_request_dialog">Permission to access the location is required for this app to show the weather near you.</string>
+    <string name="near_weather">load </string>
 
     <string name="error">We have an error</string>
     <string name="error_retry">Retry</string>

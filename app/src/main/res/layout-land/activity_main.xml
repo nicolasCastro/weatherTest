@@ -7,6 +7,17 @@
     android:id="@+id/main_container"
     tools:context=".ui.MainActivity">
 
+    <ImageButton
+        android:id="@+id/itemButton"
+        android:background="@null"
+        android:scaleType="centerInside"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="15dp"
+        android:visibility="gone"
+        android:tooltipText="@string/temperature"
+        android:src="@drawable/location"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

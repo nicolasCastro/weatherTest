@@ -62,6 +62,8 @@ class MainActivity : AppCompatActivity() {
             if (it != null) showError(it) else hideError()
         })
         serviceViewModel.loadCitiesWeather()
+
+        itemButton.setOnClickListener { locationViewModel.getLastLocation(this, locationListener) }
     }
 
     private fun initRecyclerView() {
@@ -82,6 +84,7 @@ class MainActivity : AppCompatActivity() {
         if (!permissionViewModel.checkPermissions()) {
             permissionViewModel.setupPermissions(this)
         } else {
+            itemButton.visibility = View.VISIBLE
             locationViewModel.getLastLocation(this, locationListener)
         }
     }
@@ -102,6 +105,7 @@ class MainActivity : AppCompatActivity() {
                                 startActivity(intent)
                             })
                 } else {
+                    itemButton.visibility = View.VISIBLE
                     locationViewModel.getLastLocation(this, locationListener)
                 }
             }
