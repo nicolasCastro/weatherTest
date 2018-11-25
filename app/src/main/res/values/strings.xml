@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">WeatherAstropay</string>
+
+    <string name="permission_request_title">Permission required</string>
+    <string name="permission_request_dialog">Permission to access the location is required for this app to show the weather near you.</string>
+
+    <string name="error">We have an error</string>
+    <string name="error_retry">Retry</string>
+    <string name="temperature">temperature</string>
+    <string name="temperature_format">%s °C</string>
+    <string name="temperature_range">from %s to %s °C</string>
+    <string name="wind_format">wind %s m/s</string>
+    <string name="clouds_format">clouds %s %%</string>
+    <string name="pressure_format">%s hpa</string>
+</resources>

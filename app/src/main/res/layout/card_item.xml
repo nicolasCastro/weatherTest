@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ncastro.weatherastrpay.adapter.WeatherViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/itemCityName"
+                style="@style/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:mutableText="@{viewModel.cityName}"
+                tools:text="Montevideo" />
+
+            <TextView
+                android:id="@+id/itemWeather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/itemCityName"
+                app:mutableText="@{viewModel.weather}"
+                tools:text="Clear sky" />
+
+            <LinearLayout
+                android:id="@+id/temp_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/itemWeather">
+
+                <TextView
+                    android:id="@+id/itemTemp"
+                    style="@style/temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:mutableText="@{viewModel.temp}"
+                    tools:text="7°C" />
+
+                <ImageView
+                    android:id="@+id/itemIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    app:imageUrl="@{viewModel.icon}"
+                    tools:src="@color/colorAccent" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/itemTempText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/temperature"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/temp_container" />
+
+            <TextView
+                android:id="@+id/itemTempFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mutableText="@{viewModel.tempRange}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/itemTempText"
+                tools:text="from 18 to 19 °С" />
+            <TextView
+                android:id="@+id/itemWind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mutableText="@{viewModel.wind}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/itemTempFrom"
+                tools:text="wind 4.1 m/s" />
+            <TextView
+                android:id="@+id/itemClouds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mutableText="@{viewModel.clouds}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/itemWind"
+                tools:text="clouds 0 %" />
+            <TextView
+                android:id="@+id/itemPressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mutableText="@{viewModel.pressure}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/itemClouds"
+                tools:text="1017 hpa" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
