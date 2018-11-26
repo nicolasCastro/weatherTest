@@ -31,10 +31,11 @@ class PermissionViewModel(application: Application) : AndroidViewModel(applicati
 
         if (permission != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(context as Activity,
-                            Manifest.permission.RECORD_AUDIO)) {
-                makeDialog(R.string.permission_request_dialog,
+                            Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                makeDialog(context, R.string.permission_request_dialog,
                         R.string.permission_request_title,
-                        DialogInterface.OnClickListener { _, _ -> makeRequest(context) })
+                        DialogInterface.OnClickListener { _, _ -> makeRequest(context) },
+                        DialogInterface.OnClickListener { _, _ -> })
             } else {
                 makeRequest(context)
             }
@@ -45,12 +46,13 @@ class PermissionViewModel(application: Application) : AndroidViewModel(applicati
         ActivityCompat.requestPermissions(context as Activity, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), LOCATION_PERMISSION)
     }
 
-    fun makeDialog(@StringRes message: Int, @StringRes title: Int,
-                   listener: DialogInterface.OnClickListener) {
-        val builder = AlertDialog.Builder(context())
+    fun makeDialog(activity: Activity, @StringRes message: Int, @StringRes title: Int,
+                   okListener: DialogInterface.OnClickListener, cancelListener: DialogInterface.OnClickListener) {
+        val builder = AlertDialog.Builder(activity)
         builder.setMessage(context().getString(message))
                 .setTitle(context().getString(title))
-        builder.setPositiveButton(context().getString(R.string.ok), listener)
+        builder.setPositiveButton(context().getString(R.string.ok), okListener)
+        builder.setNegativeButton(context().getString(R.string.cancel), cancelListener)
         val dialog = builder.create()
         dialog.show()
     }

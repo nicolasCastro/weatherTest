@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         when (requestCode) {
             PermissionViewModel.LOCATION_PERMISSION -> {
                 if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    permissionViewModel.makeDialog(
+                    permissionViewModel.makeDialog(this,
                             R.string.permission_request_dialog,
                             R.string.permission_request_title,
                             DialogInterface.OnClickListener { _, _ ->
@@ -103,6 +103,10 @@ class MainActivity : AppCompatActivity() {
                                 intent.data = uri
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(intent)
+                            },
+                            DialogInterface.OnClickListener { _, _ ->
+                                loader.visibility = View.GONE
+                                showError(R.string.error_location)
                             })
                 } else {
                     itemButton.visibility = View.VISIBLE
